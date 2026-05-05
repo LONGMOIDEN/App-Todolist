@@ -4,7 +4,6 @@ import com.example.todoapp.entity.Task;
 import com.example.todoapp.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -20,18 +19,7 @@ public class TaskService {
         return repo.findAll();
     }
 
-    public Task create(Task task) {
-        return repo.save(task);
-    }
-
-    public void delete(Long id) {
-        repo.deleteById(id);
-    }
-
-    public List<Task> getUpcomingTasks() {
-        return repo.findByStatusNotAndDeadlineLessThanEqual(
-                "DONE",
-                LocalDate.now().plusDays(3)
-        );
+    public List<Task> getUpcoming() {
+        return repo.findUpcomingTasks();
     }
 }
