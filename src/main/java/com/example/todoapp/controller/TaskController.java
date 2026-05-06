@@ -25,4 +25,14 @@ public class TaskController {
     public List<Task> getUpcoming() {
         return service.getUpcoming();
     }
+
+    @PostMapping
+    public Task createTask(@RequestBody Task task) {
+        return service.save(task);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTask(@PathVariable Long id) {
+        service.deleteById(id);
+    }
 }
